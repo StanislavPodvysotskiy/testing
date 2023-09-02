@@ -15,7 +15,7 @@ public class FlightFilterImpl implements FlightFilter {
     }
 
     @Override
-    public List<Flight> findByDepartureDate(List<Flight> flights, LocalDateTime date) {
+    public List<Flight> findFlightWithDepartureBeforeDate(List<Flight> flights, LocalDateTime date) {
         return flights.stream().filter(flight -> flight.getSegments().stream()
                 .anyMatch(segment -> segment.getDepartureDate().isBefore(date))).collect(Collectors.toList());
     }
@@ -36,7 +36,7 @@ public class FlightFilterImpl implements FlightFilter {
             if (segments.size() == 1) {
                 return false;
             }
-            for (int i =0; i + 1 < segments.size(); i++) {
+            for (int i = 0; i + 1 < segments.size(); i++) {
                 totalWaitingTime += Duration.between(segments.get(i).getArrivalDate(),
                                 segments.get(i + 1).getDepartureDate()).getSeconds();
                 if (totalWaitingTime > waitingSeconds) {

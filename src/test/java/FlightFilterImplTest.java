@@ -22,7 +22,7 @@ public class FlightFilterImplTest {
 
     @Test
     public void shouldFindOneFlightWhenDepartureDateIsNow() {
-        List<Flight> departureFlights = flightFilter.findByDepartureDate(flights, LocalDateTime.now());
+        List<Flight> departureFlights = flightFilter.findFlightWithDepartureBeforeDate(flights, LocalDateTime.now());
         assertEquals(1, departureFlights.size());
     }
 

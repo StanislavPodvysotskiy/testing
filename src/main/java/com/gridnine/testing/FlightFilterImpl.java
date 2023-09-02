@@ -31,16 +31,15 @@ public class FlightFilterImpl implements FlightFilter {
     public List<Flight> findByWaitingTime(List<Flight> flights, Long waitingTime) {
         return flights.stream().filter(flight -> {
             long waitingSeconds = waitingTime * 60 * 60;
+            long totalWaitingTime = 0;
             List<Segment> segments = flight.getSegments();
             if (segments.size() == 1) {
-                if (Duration.between(segments.get(0).getArrivalDate(), segments.get(0).getDepartureDate())
-                        .getSeconds() > waitingSeconds) {
-                    return true;
-                }
+                return false;
             }
             for (int i =0; i + 1 < segments.size(); i++) {
-                if (Duration.between(segments.get(i).getArrivalDate(), segments.get(i + 1).getDepartureDate())
-                        .getSeconds() > waitingSeconds) {
+                totalWaitingTime += Duration.between(segments.get(i).getArrivalDate(),
+                                segments.get(i + 1).getDepartureDate()).getSeconds();
+                if (totalWaitingTime > waitingSeconds) {
                     return true;
                 }
             }

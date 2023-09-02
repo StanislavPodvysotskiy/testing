@@ -15,7 +15,7 @@ public class Main {
 
        flights.forEach(System.out::println);
 
-       System.out.println("\n" + flightFilter.findByDepartureDate(flights, LocalDateTime.now()));
+       System.out.println("\n" + flightFilter.findFlightWithDepartureBeforeDate(flights, LocalDateTime.now()));
 
        System.out.println("\n" + flightFilter.findBySegmentWhereArrivalBeforeDeparture(flights));
 

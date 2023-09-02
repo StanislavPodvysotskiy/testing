@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FlightFilter {
 
-    List<Flight> findByDepartureDate(List<Flight> flights, LocalDateTime date);
+    List<Flight> findFlightWithDepartureBeforeDate(List<Flight> flights, LocalDateTime date);
 
     List<Flight> findBySegmentWhereArrivalBeforeDeparture(List<Flight> flights);
 

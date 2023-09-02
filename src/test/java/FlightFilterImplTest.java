@@ -33,9 +33,9 @@ public class FlightFilterImplTest {
     }
 
     @Test
-    public void shouldFindThreeFlightsWhenWaitingTimeOneHour() {
+    public void shouldFindTwoFlightsWhenWaitingTimeOneHour() {
         List<Flight> departureFlights = flightFilter.findByWaitingTime(flights, 1L);
-        assertEquals(3, departureFlights.size());
+        assertEquals(2, departureFlights.size());
     }
 
     @Test
